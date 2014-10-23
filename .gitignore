@@ -3,5 +3,6 @@
 *.db
 .DS_Store
 .coverage
+.env
 local_settings.py
 /static

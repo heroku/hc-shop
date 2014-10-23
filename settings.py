@@ -1,4 +1,6 @@
 from __future__ import absolute_import, unicode_literals
+import os
+import dj_database_url
 
 ######################
 # CARTRIDGE SETTINGS #
@@ -189,7 +191,7 @@ LANGUAGES = (
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
 # production. Best set to ``True`` in local_settings.py
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -229,23 +231,7 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 #############
 # DATABASES #
 #############
-
-DATABASES = {
-    "default": {
-        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-        "ENGINE": "django.db.backends.",
-        # DB name or path to database file if using sqlite3.
-        "NAME": "",
-        # Not used with sqlite3.
-        "USER": "",
-        # Not used with sqlite3.
-        "PASSWORD": "",
-        # Set to empty string for localhost. Not used with sqlite3.
-        "HOST": "",
-        # Set to empty string for default. Not used with sqlite3.
-        "PORT": "",
-    }
-}
+DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
 
 
 #########
@@ -383,6 +369,8 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 ###################
 # DEPLOY SETTINGS #
 ###################
+SECRET_KEY = os.environ.get('SECRET_KEY')
+NEVERCACHE_KEY = "ed3e1a51-8803-497c-9d82-98aefd15abb6c2224ca2-a94e-4211-ab33-26f6d2a37e7a84433a2d-2ee2-426c-8f11-aee56462748d"
 
 # These settings are used by the default fabfile.py provided.
 # Check fabfile.py for defaults.
@@ -404,20 +392,6 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 #     "SECRET_KEY": SECRET_KEY,
 #     "NEVERCACHE_KEY": NEVERCACHE_KEY,
 # }
-
-
-##################
-# LOCAL SETTINGS #
-##################
-
-# Allow any settings to be defined in local_settings.py which should be
-# ignored in your version control system allowing for settings to be
-# defined per machine.
-try:
-    from local_settings import *
-except ImportError:
-    pass
-
 
 ####################
 # DYNAMIC SETTINGS #
