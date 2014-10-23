@@ -13,6 +13,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
 class TriggerLog(models.Model):
     id = models.IntegerField(primary_key=True)
     table_name = models.CharField(max_length=40, blank=True)
@@ -33,12 +34,11 @@ class Lead(models.Model):
     field_c5_source = models.CharField(db_column='_c5_source', max_length=18, blank=True) # Field renamed because it started with '_'.
     firstname = models.CharField(max_length=40, blank=True)
     lastmodifieddate = models.DateTimeField(blank=True, null=True)
-    company = models.CharField(max_length=255, blank=True)
+    company = models.CharField(max_length=255, blank=False)
     createddate = models.DateTimeField(blank=True, null=True)
     email = models.CharField(max_length=80, blank=True)
-    lastname = models.CharField(max_length=80, blank=True)
+    lastname = models.CharField(max_length=80, blank=False)
     sfid = models.CharField(unique=True, max_length=18, blank=True)
-    id = models.IntegerField(primary_key=True)
     isdeleted = models.NullBooleanField()
     class Meta:
         managed = False
@@ -47,12 +47,11 @@ class Lead(models.Model):
 
 class Account(models.Model):
     field_c5_source = models.CharField(db_column='_c5_source', max_length=18, blank=True) # Field renamed because it started with '_'.
-    name = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=False)
     accountnumber = models.CharField(max_length=40, blank=True)
     lastmodifieddate = models.DateTimeField(blank=True, null=True)
     createddate = models.DateTimeField(blank=True, null=True)
     sfid = models.CharField(unique=True, max_length=18, blank=True)
-    id = models.IntegerField(primary_key=True)
     isdeleted = models.NullBooleanField()
     class Meta:
         managed = False
@@ -63,13 +62,16 @@ class Contact(models.Model):
     field_c5_source = models.CharField(db_column='_c5_source', max_length=18, blank=True) # Field renamed because it started with '_'.
     lastmodifieddate = models.DateTimeField(blank=True, null=True)
     firstname = models.CharField(max_length=40, blank=True)
-    lastname = models.CharField(max_length=80, blank=True)
+    lastname = models.CharField(max_length=80, blank=False)
     email = models.CharField(max_length=80, blank=True)
     createddate = models.DateTimeField(blank=True, null=True)
     sfid = models.CharField(unique=True, max_length=18, blank=True)
-    id = models.IntegerField(primary_key=True)
     isdeleted = models.NullBooleanField()
+
     class Meta:
         managed = False
         db_table = 'contact'
 
+
+    def __unicode__(self):
+        return '{} - {}/{}'.format(self.email, self.id, self.sfid)
