@@ -230,8 +230,16 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 #############
 # DATABASES #
 #############
-DATABASES = {'default': dj_database_url.config()}
+DATABASES = {
+    'default': dj_database_url.config(),
+    'salesforce': dj_database_url.config(),
+}
 
+DATABASES['salesforce']['OPTIONS'] = {
+    'options': '-c search_path={}'.format(os.environ.get('SALESFORCE_SCHEMA', 'salesforce'))
+}
+
+DATABASE_ROUTERS = ['hcshop.routers.SalesforceRouter']
 
 #########
 # PATHS #
