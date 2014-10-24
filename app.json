@@ -1,0 +1,29 @@
+{
+    "name": "hc-django",
+    "description": "A E-commerce store to demo Heroku Connect/Salesforce intergration with Django",
+    "website": "",
+    "repository": "",
+    "logo": "",
+    "success_url": "",
+    "keywords": [
+        "salesforce",
+        "ecommerce",
+        "herokuconnect"
+    ],
+    "scripts": {
+        "postdeploy": "postdeploy.sh"
+    },
+    "addons": [
+        "postgres"
+    ],
+    "env": {
+        "SECRET_KEY": {
+            "description": "Django SECRET_KEY",
+            "generator": "secret"
+        },
+        "NEVERCACHE_KEY": {
+            "description": "Mezzanine NEVERCACHE_KEY",
+            "generator": "secret"
+        }
+    }
+}

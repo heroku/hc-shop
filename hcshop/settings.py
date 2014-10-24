@@ -375,28 +375,8 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # DEPLOY SETTINGS #
 ###################
 SECRET_KEY = os.environ.get('SECRET_KEY')
-NEVERCACHE_KEY = "ed3e1a51-8803-497c-9d82-98aefd15abb6c2224ca2-a94e-4211-ab33-26f6d2a37e7a84433a2d-2ee2-426c-8f11-aee56462748d"
-
-# These settings are used by the default fabfile.py provided.
-# Check fabfile.py for defaults.
-
-# FABRIC = {
-#     "SSH_USER": "", # SSH username
-#     "SSH_PASS":  "", # SSH password (consider key-based authentication)
-#     "SSH_KEY_PATH":  "", # Local path to SSH key file, for key-based auth
-#     "HOSTS": [], # List of hosts to deploy to
-#     "VIRTUALENV_HOME":  "", # Absolute remote path for virtualenvs
-#     "PROJECT_NAME": "", # Unique identifier for project
-#     "REQUIREMENTS_PATH": "", # Path to pip requirements, relative to project
-#     "GUNICORN_PORT": 8000, # Port gunicorn will listen on
-#     "LOCALE": "en_US.UTF-8", # Should end with ".UTF-8"
-#     "LIVE_HOSTNAME": "www.example.com", # Host for public site.
-#     "REPO_URL": "", # Git or Mercurial remote repo URL for the project
-#     "DB_PASS": "", # Live database password
-#     "ADMIN_PASS": "", # Live admin user password
-#     "SECRET_KEY": SECRET_KEY,
-#     "NEVERCACHE_KEY": NEVERCACHE_KEY,
-# }
+NEVERCACHE_KEY = os.environ.get('NEVERCACHE_KEY', "ed3e1a51-8803-497c-9d82-98aefd15abb6c2224ca2-a94e-4211-ab33-26f6d2a37e7a84433a2d-2ee2-426c-8f11-aee56462748d")
+ALLOWED_HOSTS = ['*']
 
 ####################
 # DYNAMIC SETTINGS #
