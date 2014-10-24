@@ -9,6 +9,7 @@ dj-database-url==0.3.0
 filebrowser-safe==0.3.6
 future==0.9.0
 grappelli-safe==0.3.13
+gunicorn==19.1.1
 html5lib==0.999
 oauthlib==0.6.3
 psycopg2==2.5.4
