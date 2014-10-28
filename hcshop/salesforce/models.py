@@ -57,6 +57,7 @@ class Account(models.Model):
     createddate = models.DateTimeField(blank=True, null=True)
     sfid = models.CharField(unique=True, max_length=18, blank=True, default=None)
     isdeleted = models.NullBooleanField()
+    externalid__c = models.FloatField()
 
     class Meta:
         managed = False
@@ -77,6 +78,8 @@ class Contact(models.Model):
     sfid = models.CharField(unique=True, max_length=18, blank=True, default=None)
     isdeleted = models.NullBooleanField()
 
+    account = models.ForeignKey(Account, db_column='account__externalid__c')
+
     class Meta:
         managed = False
         db_table = 'contact'
@@ -89,6 +92,14 @@ class Contact(models.Model):
         return ' '.join(self.firstname, self.lastname)
 
 
+@receiver(post_save, sender=Account, dispatch_uid='salesforce_account_post_save')
+def account_post_save(sender, **kwargs):
+    account = kwargs.get('instance')
+    if account.externalid__c is None:
+        account.externalid__c = account.id
+        account.save()
+
+
 @receiver(post_save, sender=Order, dispatch_uid='salesforce_order_post_save')
 def order_post_save(sender, **kwargs):
     """ Anytime we get a new order lets create new SFDC objects too
@@ -97,7 +108,6 @@ def order_post_save(sender, **kwargs):
     email = order.billing_detail_email
     account, _ = Account.objects.get_or_create(name=email)
 
-    # XXX link contact to account
-    contact, _ = Contact.objects.get_or_create(email=email)
+    contact, _ = Contact.objects.get_or_create(email=email, account=account)
 
     return account, contact
