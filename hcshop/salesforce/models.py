@@ -25,6 +25,7 @@ class TriggerLog(models.Model):
 
 
 class Lead(models.Model):
+    id = models.AutoField(primary_key=True)
     field_c5_source = models.CharField(db_column='_c5_source', max_length=18, blank=True)
     firstname = models.CharField(max_length=40, blank=True)
     lastmodifieddate = models.DateTimeField(blank=True, null=True)
@@ -32,7 +33,7 @@ class Lead(models.Model):
     createddate = models.DateTimeField(blank=True, null=True)
     email = models.CharField(max_length=80, blank=True)
     lastname = models.CharField(max_length=80, blank=False)
-    sfid = models.CharField(unique=True, max_length=18, blank=True)
+    sfid = models.CharField(unique=True, max_length=18, blank=True, default=None)
     isdeleted = models.NullBooleanField()
 
     def __unicode__(self):
@@ -48,12 +49,13 @@ class Lead(models.Model):
 
 
 class Account(models.Model):
+    id = models.AutoField(primary_key=True)
     field_c5_source = models.CharField(db_column='_c5_source', max_length=18, blank=True)
     name = models.CharField(max_length=255, blank=False)
     accountnumber = models.CharField(max_length=40, blank=True)
     lastmodifieddate = models.DateTimeField(blank=True, null=True)
     createddate = models.DateTimeField(blank=True, null=True)
-    sfid = models.CharField(unique=True, max_length=18, blank=True)
+    sfid = models.CharField(unique=True, max_length=18, blank=True, default=None)
     isdeleted = models.NullBooleanField()
 
     class Meta:
@@ -65,13 +67,14 @@ class Account(models.Model):
 
 
 class Contact(models.Model):
+    id = models.AutoField(primary_key=True)
     field_c5_source = models.CharField(db_column='_c5_source', max_length=18, blank=True)
     lastmodifieddate = models.DateTimeField(blank=True, null=True)
     firstname = models.CharField(max_length=40, blank=True)
     lastname = models.CharField(max_length=80, blank=False)
     email = models.CharField(max_length=80, blank=True)
     createddate = models.DateTimeField(blank=True, null=True)
-    sfid = models.CharField(unique=True, max_length=18, blank=True)
+    sfid = models.CharField(unique=True, max_length=18, blank=True, default=None)
     isdeleted = models.NullBooleanField()
 
     class Meta:
