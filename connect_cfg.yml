@@ -1,0 +1,13 @@
+mappings:
+- fields: [Website, AnnualRevenue, Name, AccountNumber, LastModifiedDate, IsDeleted,
+    CreatedDate, Id, ExternalID__c]
+  object_name: Account
+  table_name: account
+- fields: [FirstName, Account__ExternalID__c, LastModifiedDate, LastName, Id, CreatedDate,
+    Email, IsDeleted, AccountId]
+  object_name: Contact
+  table_name: contact
+- fields: [FirstName, LastModifiedDate, Company, LastName, Id, CreatedDate, Email,
+    IsDeleted]
+  object_name: Lead
+  table_name: lead

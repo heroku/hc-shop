@@ -34,7 +34,7 @@ class SalesforceRouter(object):
         database.
         """
         if db == 'salesforce':
-            return model._meta.app_label == 'salesforce'
+            return False
         elif model._meta.app_label == 'salesforce':
             return False
         return None

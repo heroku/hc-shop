@@ -239,7 +239,8 @@ DATABASES['salesforce']['OPTIONS'] = {
     'options': '-c search_path={}'.format(os.environ.get('SALESFORCE_SCHEMA', 'salesforce'))
 }
 
-DATABASE_ROUTERS = ['hcshop.routers.SalesforceRouter']
+# XXX currently object creation only works with the public schema
+#DATABASE_ROUTERS = ['hcshop.routers.SalesforceRouter']
 
 #########
 # PATHS #
