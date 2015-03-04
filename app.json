@@ -1,9 +1,9 @@
 {
     "name": "hc-django",
     "description": "A E-commerce store to demo Heroku Connect/Salesforce intergration with Django",
-    "website": "",
-    "repository": "",
-    "logo": "",
+    "website": "https://github.com/heroku/hc-django",
+    "repository": "https://github.com/heroku/hc-django",
+    "logo": "https://raw.githubusercontent.com/heroku/heroku-connect-quickstart/master/connect-logo.png",
     "success_url": "/shop",
     "keywords": [
         "salesforce",
@@ -14,8 +14,9 @@
         "postdeploy": "postdeploy.sh"
     },
     "addons": [
-        "postgres",
-        "mongolab"
+        "heroku-postgresql",
+        "mongolab",
+        "herokuconnect"
     ],
     "env": {
         "SECRET_KEY": {
