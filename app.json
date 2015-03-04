@@ -4,7 +4,7 @@
     "website": "",
     "repository": "",
     "logo": "",
-    "success_url": "",
+    "success_url": "/shop",
     "keywords": [
         "salesforce",
         "ecommerce",
@@ -14,7 +14,8 @@
         "postdeploy": "postdeploy.sh"
     },
     "addons": [
-        "postgres"
+        "postgres",
+        "mongolab"
     ],
     "env": {
         "SECRET_KEY": {

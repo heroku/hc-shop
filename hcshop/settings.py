@@ -2,6 +2,7 @@ from __future__ import absolute_import, unicode_literals
 import os
 import dj_database_url
 
+
 ######################
 # CARTRIDGE SETTINGS #
 ######################
@@ -232,15 +233,24 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 #############
 DATABASES = {
     'default': dj_database_url.config(),
-    'salesforce': dj_database_url.config(),
+    # 'salesforce': dj_database_url.config(),
+    'mongo': dj_database_url.config('MONGODB_URL'),
 }
 
-DATABASES['salesforce']['OPTIONS'] = {
-    'options': '-c search_path={}'.format(os.environ.get('SALESFORCE_SCHEMA', 'salesforce'))
-}
+DATABASES['mongo']['ENGINE'] = 'django_mongodb_engine'
+DATABASES['mongo']['SUPPORTS_TRANSACTIONS'] = False
+
+# DATABASES['salesforce']['OPTIONS'] = {
+#    'options': '-c search_path={}'.format(os.environ.get('SALESFORCE_SCHEMA', 'salesforce'))
+#}
 
 # XXX currently object creation only works with the public schema
 #DATABASE_ROUTERS = ['hcshop.routers.SalesforceRouter']
+
+
+# Setup mongo GridFS for media storage
+DEFAULT_FILE_STORAGE = 'storages.backends.mongodb.GridFSStorage'
+GRIDFS_DATABASE = 'mongo'
 
 #########
 # PATHS #
@@ -318,6 +328,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     #"mezzanine.accounts",
     #"mezzanine.mobile",
+    "storages",
 
     "hcshop.salesforce",
 )

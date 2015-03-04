@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
@@ -37,8 +38,7 @@ urlpatterns += patterns('',
     # commented out like the others, so it's the default. You only need
     # one homepage pattern, so if you use a different one, comment this
     # one out.
-
-    url(r'^$', RedirectView.as_view(url='/shop'), name='home'),
+    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
 
     # MEZZANINE'S URLS
     # ----------------
@@ -52,6 +52,10 @@ urlpatterns += patterns('',
     # from it, and use them directly below instead of using
     # ``mezzanine.urls``.
     ("^", include("mezzanine.urls")),
+)
+
+urlpatterns += patterns('django.views.static',
+    (r'media/(?P<path>.*)', 'serve', {'document_root': settings.MEDIA_ROOT}),
 )
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error
