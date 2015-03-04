@@ -14,7 +14,7 @@
         "postdeploy": "postdeploy.sh"
     },
     "addons": [
-        "postgresql",
+        "heroku-postgresql",
         "mongolab",
         "herokuconnect"
     ],
