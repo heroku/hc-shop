@@ -6,7 +6,7 @@ A sample Django application that intergrates with Heroku Connect and Salesforce.
 # Setup
 
 
-Deploy with the Heroku Button [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=)
+Deploy with the Heroku Button -- [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=)
 
   1. heroku run python manage.py createsuperuser
   1. Go to /admin/shop/products/add/ to create your first product
