@@ -234,7 +234,7 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 DATABASES = {
     'default': dj_database_url.config(),
     # 'salesforce': dj_database_url.config(),
-    'mongo': dj_database_url.config('MONGODB_URL'),
+    'mongo': dj_database_url.config('MONGOLAB_URI'),
 }
 
 DATABASES['mongo']['ENGINE'] = 'django_mongodb_engine'
