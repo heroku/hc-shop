@@ -233,20 +233,17 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 #############
 DATABASES = {
     'default': dj_database_url.config(),
-    # 'salesforce': dj_database_url.config(),
+    'salesforce': dj_database_url.config(),
     'mongo': dj_database_url.config('MONGOLAB_URI'),
 }
 
 DATABASES['mongo']['ENGINE'] = 'django_mongodb_engine'
 DATABASES['mongo']['SUPPORTS_TRANSACTIONS'] = False
 
-# DATABASES['salesforce']['OPTIONS'] = {
-#    'options': '-c search_path={}'.format(os.environ.get('SALESFORCE_SCHEMA', 'salesforce'))
-#}
-
-# XXX currently object creation only works with the public schema
-#DATABASE_ROUTERS = ['hcshop.routers.SalesforceRouter']
-
+DATABASES['salesforce']['OPTIONS'] = {
+    'options': '-c search_path={}'.format(os.environ.get('SALESFORCE_SCHEMA', 'salesforce'))
+}
+DATABASE_ROUTERS = ['hcshop.routers.SalesforceRouter']
 
 # Setup mongo GridFS for media storage
 DEFAULT_FILE_STORAGE = 'storages.backends.mongodb.GridFSStorage'

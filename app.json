@@ -11,7 +11,7 @@
         "herokuconnect"
     ],
     "scripts": {
-        "postdeploy": "./postdeploy.sh"
+        "postdeploy": "./setup.sh"
     },
     "addons": [
         "heroku-postgresql",
