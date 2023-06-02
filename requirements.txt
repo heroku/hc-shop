@@ -18,7 +18,7 @@ oauthlib==0.6.3
 psycopg2==2.5.4
 pymongo==2.8
 pytz==2014.7
-reportlab==3.1.8
+reportlab==3.6.13
 requests==2.4.3
 requests-oauthlib==0.4.2
 six==1.8.0
